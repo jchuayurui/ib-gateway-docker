@@ -1,0 +1,20 @@
+version: "3.4"
+
+services:
+  ib-gateway:
+    restart: always
+    build:
+      context: ./latest
+    image: ib-gateway-docker:latest
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:4001:4001"
+      - "127.0.0.1:4002:4002"
+      - "127.0.0.1:5900:5900"
+    healthcheck:
+      test: "bash -c 'printf \"GET / HTTP/1.1\n\n\" > /dev/tcp/127.0.0.1/4000; exit $$?;'"
+      interval: 15s
+      timeout: 30s
+      retries: 3
+      start_period: 80s

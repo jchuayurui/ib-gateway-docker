@@ -14,7 +14,7 @@ ENV IBC_VERSION=3.18.0
 
 # Prepare system
 RUN apt-get update -y
-RUN apt-get install --no-install-recommends --yes \
+RUN apt-get install --yes \
   curl \
   ca-certificates \
   unzip
@@ -37,7 +37,7 @@ COPY ./config/ibgateway/jts.ini /root/Jts/jts.ini
 # Install IBC
 # COPY IBCLinux-3.18.0.zip . 
 
-RUN curl -sSL https://github.com/IbcAlpha/IBC/releases/download/${IBC_VERSION}/IBCLinux-${IBC_VERSION}.zip --output IBCLinux-${IBC_VERSION}.zip
+RUN curl -sSL https://github.com/IbcAlpha/IBC/releases/download/${IBC_VERSION}-Update.1/IBCLinux-${IBC_VERSION}.zip --output IBCLinux-${IBC_VERSION}.zip
 RUN ls -ltra
 RUN mkdir /root/ibc
 RUN unzip ./IBCLinux-${IBC_VERSION}.zip -d /root/ibc
